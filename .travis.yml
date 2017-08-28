@@ -1,4 +1,5 @@
 language: cpp
+script: make
 addons:
   apt:
     packages:
