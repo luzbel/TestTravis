@@ -8,3 +8,18 @@ addons:
   apt:
     packages:
     - libsdl1.2-dev
+deploy:
+  provider: releases
+  api_key:
+    secure: XvDPDXt3HhzXsfHdw51JC9fDdIbDma3UAYTCfknpYkQHuMzZtOmwBFX1TNZaKfoqQPni6uEgEKEqMtZULSLG3fY438mLyZ5HRMNMrAMTbsTMxzu5OzjVG1qRoJ0105pnSBZNDTDcgrV88THPKVPir
+hAmE/REsmoGTiBkab/jWQo55mLcdu8MD7pD+FcRLyIIP0NYw9t5LFCDsh/yH5DQO+XaFsHVK0+NUXqftzV1V59aAE3XTYZH/K/M3UpraMnj5CbvjHhvtSv3+Hn0FAXbezdu1jwZ9zzCbcG0nCNahCEqG0mUW+i10B
+fqOaQZ3KkjQttk7DLZeaBF8SqDVnNd6uud4z+d+KuZf+vAK7Tm7ydBIGKSt+TVQ2mrQVXtfA+kkDEAEazerUMSUEmijq2gOGgNz1sj2pDWE3699RU9DAbpxf7B3/wBtFxIp73nmFHSxFIAAtNX1kFVg2Ub8YcBj/Z
+QfNAQnMJ8vCowclhc7IMl/AkTFc+1goS2F7xVhu3invVjPzAXukQkbjFmwMbxjFpHhmE+iAQWvdKqYKnVRhyiwG0Ep4HVhuLi01DFULXqJvauprg1f1JpzqzLkiN//virGWU1bDdOTDnThClpXYsDPj3M8WVv2XUS
+aslxPfj5nMtvl9rl2FucsQVFzJz2cG4FtDcHPtMotlCWKPRheQs=
+  file: 
+   - VigasocoSDL/VigasocoSDL
+   - VigasocoSDL/audio
+   - VigasocoSDL/video
+   - VigasocoSDL/input
+  on:
+    repo: luzbel/TestTravis
