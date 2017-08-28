@@ -5,9 +5,12 @@ before_script:
  - mkdir $TRAVIS_BUILD_DIR/VigasocoSDL/input
  - mkdir $TRAVIS_BUILD_DIR/VigasocoSDL/video
  - mkdir $TRAVIS_BUILD_DIR/VigasocoSDL/audio
- - if [ $TRAVIS_OS_NAME = osx ]; then echo AAA; fi
- - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then echo BBB; fi
- - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install sdl; fi
+ - if [ $TRAVIS_OS_NAME = osx ]; then echo AAA ; fi
+ - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then echo BBB ; fi
+ - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install sdl ; fi
+ - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sdl-config --cflags ; fi
+ - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sdl-config --libs ; fi
+ - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew info sdl ; fi
 script: make
 addons:
   apt:
