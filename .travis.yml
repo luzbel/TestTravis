@@ -1,4 +1,7 @@
 language: cpp
+os:
+  - linux
+  - osx
 before_script:
  - mkdir /home/travis/build/luzbel/TestTravis/VigasocoSDL/input
  - mkdir /home/travis/build/luzbel/TestTravis/VigasocoSDL/video
