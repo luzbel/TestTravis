@@ -5,8 +5,7 @@ before_script:
  - mkdir $TRAVIS_BUILD_DIR/VigasocoSDL/input
  - mkdir $TRAVIS_BUILD_DIR/VigasocoSDL/video
  - mkdir $TRAVIS_BUILD_DIR/VigasocoSDL/audio
- - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install sdl ; fi
- - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew link sdl ; fi
+ - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install sdl --universal ; fi
 script: make
 addons:
   apt:
