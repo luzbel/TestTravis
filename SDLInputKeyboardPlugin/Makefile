@@ -6,7 +6,7 @@ all: ../VigasocoSDL/input/libVigasocoSDLInputPlugin.so
 OBJECTS = SDLInputKeyboardPlugin.o PluginMain.o
 
 ../VigasocoSDL/input/libVigasocoSDLInputPlugin.so: $(OBJECTS)
-	$(CXX) `sdl-config --ldflags` -fPIC -shared $(OBJECTS) -o $@
+	$(CXX) `sdl-config --libs` -fPIC -shared $(OBJECTS) -o $@
 
 clean:
 	rm -f $(OBJECTS) ../VigasocoSDL/input/libVigasocoSDLInputPlugin.so 
