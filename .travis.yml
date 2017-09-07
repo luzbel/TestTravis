@@ -13,6 +13,7 @@ matrix:
     env: ARTIFACT_FILE="VigasocoSDL-Beta.MacOSX.static.zip" MAKE_OPTS="-f Makefile.static"
     before_install:
     - brew install sdl
+    - sdl-config --static-libs
 before_script:
  - mkdir $TRAVIS_BUILD_DIR/VigasocoSDL/input
  - mkdir $TRAVIS_BUILD_DIR/VigasocoSDL/video
@@ -31,4 +32,4 @@ deploy:
     secure: XvDPDXt3HhzXsfHdw51JC9fDdIbDma3UAYTCfknpYkQHuMzZtOmwBFX1TNZaKfoqQPni6uEgEKEqMtZULSLG3fY438mLyZ5HRMNMrAMTbsTMxzu5OzjVG1qRoJ0105pnSBZNDTDcgrV88THPKVPirhAmE/REsmoGTiBkab/jWQo55mLcdu8MD7pD+FcRLyIIP0NYw9t5LFCDsh/yH5DQO+XaFsHVK0+NUXqftzV1V59aAE3XTYZH/K/M3UpraMnj5CbvjHhvtSv3+Hn0FAXbezdu1jwZ9zzCbcG0nCNahCEqG0mUW+i10BfqOaQZ3KkjQttk7DLZeaBF8SqDVnNd6uud4z+d+KuZf+vAK7Tm7ydBIGKSt+TVQ2mrQVXtfA+kkDEAEazerUMSUEmijq2gOGgNz1sj2pDWE3699RU9DAbpxf7B3/wBtFxIp73nmFHSxFIAAtNX1kFVg2Ub8YcBj/ZQfNAQnMJ8vCowclhc7IMl/AkTFc+1goS2F7xVhu3invVjPzAXukQkbjFmwMbxjFpHhmE+iAQWvdKqYKnVRhyiwG0Ep4HVhuLi01DFULXqJvauprg1f1JpzqzLkiN//virGWU1bDdOTDnThClpXYsDPj3M8WVv2XUSaslxPfj5nMtvl9rl2FucsQVFzJz2cG4FtDcHPtMotlCWKPRheQs=
   file: "$ARTIFACT_FILE"
   on:
-    repo: luzbel/TestTravis
+    branch: MacOSX
