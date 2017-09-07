@@ -17,6 +17,7 @@ FileLoader::FileLoader()
 	// adds the default loader and path
 	addLoader(new UncompressedLoader());
 	addPath("roms");
+	addPath("/tmp/roms"); // Prueba en Mac OS X
 #ifdef _EE
 	addPath("host:roms/");
 	addPath("host0:roms/");
