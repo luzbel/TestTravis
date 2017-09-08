@@ -1,19 +1,13 @@
 language: cpp
+branches:
+  only:
+  - MacOSX
 matrix:
   include:
-  - os: linux
-    env: ARTIFACT_FILE="VigasocoSDL-Beta.Linux.zip" MAKE_OPTS=""
   - os: osx
     env: ARTIFACT_FILE="VigasocoSDL-Beta.MacOSX.zip" MAKE_OPTS=""
     before_install:
     - brew install sdl
-  - os: linux
-    env: ARTIFACT_FILE="VigasocoSDL-Beta.Linux.static.zip" MAKE_OPTS="-f Makefile.static"
-  - os: osx
-    env: ARTIFACT_FILE="VigasocoSDL-Beta.MacOSX.static.zip" MAKE_OPTS="-f Makefile.static"
-    before_install:
-    - brew install sdl
-    - sdl-config --static-libs
 before_script:
  - mkdir $TRAVIS_BUILD_DIR/VigasocoSDL/input
  - mkdir $TRAVIS_BUILD_DIR/VigasocoSDL/video
