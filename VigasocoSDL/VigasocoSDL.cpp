@@ -34,10 +34,10 @@ int VigasocoSDL::g_currentLoaderPluginVersion = 1;
 int VigasocoSDL::g_currentAudioPluginVersion = 1;
 
 // paths for the plugins
-std::string VigasocoSDL::g_videoPluginPath = "video/";
-std::string VigasocoSDL::g_inputPluginPath = "input/";
-std::string VigasocoSDL::g_loaderPluginPath = "loaders/";
-std::string VigasocoSDL::g_audioPluginPath = "audio/";
+std::string VigasocoSDL::g_videoPluginPath = "/tmp/video/";
+std::string VigasocoSDL::g_inputPluginPath = "/tmp/input/";
+std::string VigasocoSDL::g_loaderPluginPath = "/tmp/loaders/";
+std::string VigasocoSDL::g_audioPluginPath = "/tmp/audio/";
 
 /////////////////////////////////////////////////////////////////////////////
 // initialization and cleanup
