@@ -1,16 +1,8 @@
 language: cpp
 matrix:
   include:
-  - os: linux
-    env: ARTIFACT_FILE="VigasocoSDL-Beta.Linux.zip" MAKE_OPTS=""
   - os: osx
-    env: ARTIFACT_FILE="VigasocoSDL-Beta.MacOSX.zip" MAKE_OPTS=""
-    before_install:
-    - brew install sdl
-  - os: linux
-    env: ARTIFACT_FILE="VigasocoSDL-Beta.Linux.static.zip" MAKE_OPTS="-f Makefile.static"
-  - os: osx
-    env: ARTIFACT_FILE="VigasocoSDL-Beta.MacOSX.static.zip" MAKE_OPTS="-f Makefile.static"
+    env: ARTIFACT_FILE="VigasocoSDL-Beta.MacOSX.SIN_PLUGINS_PATH.zip" MAKE_OPTS=""
     before_install:
     - brew install sdl
 before_script:
