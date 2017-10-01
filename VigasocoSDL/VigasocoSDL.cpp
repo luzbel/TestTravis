@@ -36,16 +36,16 @@ int VigasocoSDL::g_currentAudioPluginVersion = 1;
 // paths for the plugins
 
 //  pruebas en mac pasando ruta completa de path por linea de comandos y sin directorios por defecto
-std::string VigasocoSDL::g_videoPluginPath = "";
+/* std::string VigasocoSDL::g_videoPluginPath = "";
 std::string VigasocoSDL::g_inputPluginPath = "";
 std::string VigasocoSDL::g_loaderPluginPath = "";
 std::string VigasocoSDL::g_audioPluginPath = "";
+*/
+std::string VigasocoSDL::g_videoPluginPath = "video/";
+std::string VigasocoSDL::g_inputPluginPath = "input/";
 
-//std::string VigasocoSDL::g_videoPluginPath = "video/";
-//std::string VigasocoSDL::g_inputPluginPath = "input/";
-
-//std::string VigasocoSDL::g_loaderPluginPath = "loaders/";
-//std::string VigasocoSDL::g_audioPluginPath = "audio/";
+std::string VigasocoSDL::g_loaderPluginPath = "loaders/";
+std::string VigasocoSDL::g_audioPluginPath = "audio/";
 
 /////////////////////////////////////////////////////////////////////////////
 // initialization and cleanup
