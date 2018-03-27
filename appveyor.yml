@@ -4,7 +4,7 @@ image:
 - Ubuntu
 install:
 - cmd: >-
-    ARTIFACT_FILE="VigasocoSDL-Beta.Win32.zip"
+    set ARTIFACT_FILE="VigasocoSDL-Beta.Win32.zip"
     appveyor DownloadFile https://www.libsdl.org/release/SDL-devel-1.2.15-mingw32.tar.gz
 
     7z x SDL-devel-1.2.15-mingw32.tar.gz -so | 7z x -si -ttar -oc:\MinGW
@@ -23,7 +23,7 @@ install:
 
     mkdir %APPVEYOR_BUILD_FOLDER%\VigasocoSDL\audio
 - sh: >-
-    ARTIFACT_FILE="VigasocoSDL-Beta.Linux.zip"
+    export ARTIFACT_FILE="VigasocoSDL-Beta.Linux.zip"
     sudo apt-get update
     sudo apt-get install libsdl1.2-dev
     mkdir $APPVEYOR_BUILD_FOLDER\VigasocoSDL\input
