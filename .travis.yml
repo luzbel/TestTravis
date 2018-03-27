@@ -1,4 +1,7 @@
 language: cpp
+branches:
+  except:
+  - appveyor
 matrix:
   include:
   - os: osx
