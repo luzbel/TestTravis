@@ -28,6 +28,12 @@ install:
     mkdir %APPVEYOR_BUILD_FOLDER%\VigasocoSDL\video
 
     mkdir %APPVEYOR_BUILD_FOLDER%\VigasocoSDL\audio
+
+    mkdir .\VigasocoSDL\input
+
+    mkdir .\VigasocoSDL\video
+
+    mkdir .\VigasocoSDL\audio
 - sh: >-
     export ARTIFACT_FILE="VigasocoSDL-Beta.Linux.zip"
     
