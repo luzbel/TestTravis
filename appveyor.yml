@@ -1,6 +1,7 @@
 version: 1.0.{build}
 image:
-- Visual Studio 2015
+# comentado temporalmente mientras pruebo a compilar en linux
+#- Visual Studio 2015
 - Ubuntu
 branches:
   # whitelist
@@ -32,7 +33,7 @@ install:
     
     sudo apt-get update
     
-    sudo apt-get install libsdl1.2-dev
+    sudo apt-get install -y libsdl1.2-dev
     
     mkdir $APPVEYOR_BUILD_FOLDER\VigasocoSDL\input
     
