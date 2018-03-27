@@ -35,6 +35,12 @@ install:
     
     sudo apt-get install -y libsdl1.2-dev
     
+    echo $APPVEYOR_BUILD_FOLDER
+    
+    echo AAAAAAAAAAAA
+    
+    echo $PWD
+    
     mkdir $APPVEYOR_BUILD_FOLDER\VigasocoSDL\input
     
     mkdir $APPVEYOR_BUILD_FOLDER\VigasocoSDL\video
