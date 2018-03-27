@@ -2,6 +2,10 @@ version: 1.0.{build}
 image:
 - Visual Studio 2015
 - Ubuntu
+branches:
+  # whitelist
+  only:
+    - appveyor
 install:
 - cmd: >-
     set ARTIFACT_FILE="VigasocoSDL-Beta.Win32.zip"
@@ -49,6 +53,7 @@ build_script:
 
     7z a -tzip %ARTIFACT_FILE% VigasocoSDL\VigasocoSDL.exe VigasocoSDL\roms VigasocoSDL\input VigasocoSDL\video VigasocoSDL\audio VigasocoSDL\libgcc_s_dw2-1.dll VigasocoSDL\libstdc++-6.dll VigasocoSDL\SDL.dll
 - sh: >-
+    make
     zip $ARTIFACT_FILE VigasocoSDL/VigasocoSDL VigasocoSDL/audio/libVigasocoNULLAudioPlugin.so VigasocoSDL/audio/libVigasocoSDLAudioPlugin.so VigasocoSDL/video/libVigasocoSDLDrawPlugin.so VigasocoSDL/input/libVigasocoSDLInputPlugin.so VigasocoSDL/roms/abadia/*
 artifacts:
 - path: $(ARTIFACT_FILE)
