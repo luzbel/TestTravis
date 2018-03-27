@@ -28,12 +28,6 @@ install:
     mkdir %APPVEYOR_BUILD_FOLDER%\VigasocoSDL\video
 
     mkdir %APPVEYOR_BUILD_FOLDER%\VigasocoSDL\audio
-
-    mkdir .\VigasocoSDL\input
-
-    mkdir .\VigasocoSDL\video
-
-    mkdir .\VigasocoSDL\audio
 - sh: >-
     export ARTIFACT_FILE="VigasocoSDL-Beta.Linux.zip"
     
@@ -52,6 +46,18 @@ install:
     mkdir $APPVEYOR_BUILD_FOLDER\VigasocoSDL\video
     
     mkdir $APPVEYOR_BUILD_FOLDER\VigasocoSDL\audio
+
+    echo mkdir $APPVEYOR_BUILD_FOLDER\VigasocoSDL\input
+    
+    echo mkdir $APPVEYOR_BUILD_FOLDER\VigasocoSDL\video
+    
+    echo mkdir $APPVEYOR_BUILD_FOLDER\VigasocoSDL\audio
+ 
+    mkdir .\VigasocoSDL\input
+    
+    mkdir .\VigasocoSDL\video
+    
+    mkdir .\VigasocoSDL\audio
 build_script:
 - cmd: >-
     set PATH=C:\MinGW\bin\;%PATH%
