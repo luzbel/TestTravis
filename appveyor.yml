@@ -46,6 +46,7 @@ install:
     mkdir $APPVEYOR_BUILD_FOLDER/VigasocoSDL/video
     
     mkdir $APPVEYOR_BUILD_FOLDER/VigasocoSDL/audio
+build_script:
 - cmd: >-
     set PATH=C:\MinGW\bin\;%PATH%
 
