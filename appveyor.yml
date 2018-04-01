@@ -9,7 +9,7 @@ branches:
     - appveyor
 install:
 - cmd: >-
-    set ARTIFACT_FILE="VigasocoSDL-Beta.Win32.zip"
+    set ARTIFACT_FILE="build\bin\VigasocoSDL-Beta.Win32.zip"
     
     appveyor DownloadFile https://www.libsdl.org/release/SDL-devel-1.2.15-mingw32.tar.gz
 
@@ -28,6 +28,10 @@ install:
     mkdir %APPVEYOR_BUILD_FOLDER%\VigasocoSDL\video
 
     mkdir %APPVEYOR_BUILD_FOLDER%\VigasocoSDL\audio
+    
+    mkdir %APPVEYOR_BUILD_FOLDER%\build\
+    
+    mkdir %APPVEYOR_BUILD_FOLDER%\build\win
 - sh: >-
     export ARTIFACT_FILE="VigasocoSDL-Beta.Linux.zip"
     
@@ -46,6 +50,10 @@ install:
     mkdir $APPVEYOR_BUILD_FOLDER/VigasocoSDL/video
     
     mkdir $APPVEYOR_BUILD_FOLDER/VigasocoSDL/audio
+    
+    mkdir $APPVEYOR_BUILD_FOLDER/build
+    
+    mkdir $APPVEYOR_BUILD_FOLDER/build/linux
 build_script:
 - cmd: >-
     set PATH=C:\MinGW\bin\;%PATH%
@@ -64,4 +72,4 @@ build_script:
     
     zip $ARTIFACT_FILE VigasocoSDL/VigasocoSDL VigasocoSDL/audio/libVigasocoNULLAudioPlugin.so VigasocoSDL/audio/libVigasocoSDLAudioPlugin.so VigasocoSDL/video/libVigasocoSDLDrawPlugin.so VigasocoSDL/input/libVigasocoSDLInputPlugin.so VigasocoSDL/roms/abadia/*
 artifacts:
-- path: $(ARTIFACT_FILE)
+- path: build\*
