@@ -9,7 +9,7 @@ branches:
     - appveyor
 install:
 - cmd: >-
-    set ARTIFACT_FILE="build\bin\VigasocoSDL-Beta.Win32.zip"
+    set ARTIFACT_FILE="build\win\VigasocoSDL-Beta.Win32.zip"
     
     appveyor DownloadFile https://www.libsdl.org/release/SDL-devel-1.2.15-mingw32.tar.gz
 
@@ -75,6 +75,7 @@ build_script:
     cp $ARTIFACT_FILE $APPVEYOR_BUILD_FOLDER
 artifacts:
 - path: build\*\*
+  name: zips
 
 deploy:
   release: $(APPVEYOR_REPO_TAG_NAME)
@@ -82,7 +83,6 @@ deploy:
   provider: GitHub
   auth_token:
     secure: Nln0VXNH3fI6D0B7GizeIQTYFlqUY0n3BqDCzrwfFblMRG/9s0lsStJV+9aO3sR5
-  artifact: build\*\*
   draft: false
   prerelease: false
   on:
