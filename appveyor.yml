@@ -84,7 +84,7 @@ deploy:
   auth_token:
     secure: Nln0VXNH3fI6D0B7GizeIQTYFlqUY0n3BqDCzrwfFblMRG/9s0lsStJV+9aO3sR5
   draft: false
-  prerelease: false
+  prerelease: true
   on:
     branch: appveyor
     appveyor_repo_tag: true
