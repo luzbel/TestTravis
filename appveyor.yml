@@ -72,4 +72,4 @@ build_script:
     
     zip $ARTIFACT_FILE VigasocoSDL/VigasocoSDL VigasocoSDL/audio/libVigasocoNULLAudioPlugin.so VigasocoSDL/audio/libVigasocoSDLAudioPlugin.so VigasocoSDL/video/libVigasocoSDLDrawPlugin.so VigasocoSDL/input/libVigasocoSDLInputPlugin.so VigasocoSDL/roms/abadia/*
 artifacts:
-- path: build\*
+- path: build\*\*
