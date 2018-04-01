@@ -1,7 +1,7 @@
 version: 1.0.{build}
 image:
 # comentado temporalmente mientras pruebo a compilar en linux
-#- Visual Studio 2015
+- Visual Studio 2015
 - Ubuntu
 branches:
   # whitelist
