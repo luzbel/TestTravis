@@ -33,7 +33,7 @@ install:
     
     mkdir %APPVEYOR_BUILD_FOLDER%\build\win
 - sh: >-
-    export ARTIFACT_FILE="VigasocoSDL-Beta.Linux.zip"
+    export ARTIFACT_FILE="build/linux/VigasocoSDL-Beta.Linux.zip"
     
     sudo apt-get update
     
@@ -71,5 +71,7 @@ build_script:
     make
     
     zip $ARTIFACT_FILE VigasocoSDL/VigasocoSDL VigasocoSDL/audio/libVigasocoNULLAudioPlugin.so VigasocoSDL/audio/libVigasocoSDLAudioPlugin.so VigasocoSDL/video/libVigasocoSDLDrawPlugin.so VigasocoSDL/input/libVigasocoSDLInputPlugin.so VigasocoSDL/roms/abadia/*
+    
+    cp $ARTIFACT_FILE $APPVEYOR_BUILD_FOLDER
 artifacts:
 - path: build\*\*
