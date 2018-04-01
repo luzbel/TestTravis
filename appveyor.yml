@@ -75,3 +75,16 @@ build_script:
     cp $ARTIFACT_FILE $APPVEYOR_BUILD_FOLDER
 artifacts:
 - path: build\*\*
+
+deploy:
+  release: $(APPVEYOR_REPO_TAG_NAME)
+  description: $(APPVEYOR_REPO_COMMIT_MESSAGE)
+  provider: GitHub
+  auth_token:
+    secure: Nln0VXNH3fI6D0B7GizeIQTYFlqUY0n3BqDCzrwfFblMRG/9s0lsStJV+9aO3sR5
+  artifact: build\*\*
+  draft: false
+  prerelease: false
+  on:
+    branch: appveyor
+    appveyor_repo_tag: true
