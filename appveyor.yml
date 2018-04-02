@@ -1,8 +1,4 @@
 version: 1.0.{build}
-image:
-# comentado temporalmente mientras pruebo a compilar en linux
-- Visual Studio 2015
-- Ubuntu
 environment:
   matrix:
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
