@@ -6,7 +6,7 @@ image:
 environment:
   matrix:
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-      BUILD_CMD: C:\MinGW\bin\mingw32-make -f Makefile.MinGW
+      BUILD_CMD: C:\MinGW\\bin\\mingw32-make -f Makefile.MinGW
       ARTIFACT_FILE: "build\win\VigasocoSDL-Beta.Win32.zip"
     - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu
       BUILD_CMD: make -f Makefile
