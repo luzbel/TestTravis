@@ -1,7 +1,8 @@
 language: cpp
 branches:
-  except:
-  - appveyor
+  only:
+  - TravisAndAppVeyor
+  - tralari
 matrix:
   include:
   - os: osx
@@ -27,3 +28,4 @@ deploy:
   file: "$ARTIFACT_FILE"
   on:
     repo: luzbel/TestTravis
+    tags: true

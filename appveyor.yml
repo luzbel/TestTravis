@@ -13,7 +13,7 @@ environment:
 branches:
   # whitelist
   only:
-    - appveyor
+    - TravisAndAppVeyor
 install:
 - cmd: >-
     
@@ -33,8 +33,6 @@ install:
     
     mkdir %APPVEYOR_BUILD_FOLDER%\build\win
 - sh: >-
-    export ARTIFACT_FILE="build/linux/VigasocoSDL-Beta.Linux.zip"
-    
     sudo apt-get update
     
     sudo apt-get install -y libsdl1.2-dev
@@ -80,5 +78,5 @@ deploy:
   draft: false
   prerelease: true
   on:
-    branch: appveyor
+    branch: TravisAndAppVeyor
     appveyor_repo_tag: true
