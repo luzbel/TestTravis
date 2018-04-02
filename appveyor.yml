@@ -13,7 +13,7 @@ environment:
 branches:
   # whitelist
   only:
-    - appveyor
+    - TravisAndAppVeyor
 install:
 - cmd: >-
     
@@ -80,5 +80,5 @@ deploy:
   draft: false
   prerelease: true
   on:
-    branch: appveyor
+    branch: TravisAndAppVeyor
     appveyor_repo_tag: true
