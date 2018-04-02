@@ -3,25 +3,29 @@ image:
 # comentado temporalmente mientras pruebo a compilar en linux
 - Visual Studio 2015
 - Ubuntu
+environment:
+  matrix:
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+      BUILD_CMD: C:\MinGW\bin\mingw32-make -f Makefile.MinGW
+      ARTIFACT_FILE: "build\win\VigasocoSDL-Beta.Win32.zip"
+    - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu
+      BUILD_CMD: make -f Makefile
+      ARTIFACT_FILE: "build/linux/VigasocoSDL-Beta.Linux.zip"
+    - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu
+      BUILD_CMD: make -f Makefile.static
+      ARTIFACT_FILE: "build/linux/VigasocoSDL-Beta.Linux.static.zip"
 branches:
   # whitelist
   only:
     - appveyor
 install:
 - cmd: >-
-    set ARTIFACT_FILE="build\win\VigasocoSDL-Beta.Win32.zip"
     
     appveyor DownloadFile https://www.libsdl.org/release/SDL-devel-1.2.15-mingw32.tar.gz
 
     7z x SDL-devel-1.2.15-mingw32.tar.gz -so | 7z x -si -ttar -oc:\MinGW
 
     ren c:\MinGW\SDL-1.2.15 SDL-1.2.14
-
-    rem dir c:\MinGW\SDL-1.2.14
-
-    rem dir c:\mingw\bin
-
-    rem dir mkdir %APPVEYOR_BUILD_FOLDER%
 
     mkdir %APPVEYOR_BUILD_FOLDER%\VigasocoSDL\input
 
@@ -39,12 +43,6 @@ install:
     
     sudo apt-get install -y libsdl1.2-dev
     
-    echo $APPVEYOR_BUILD_FOLDER
-    
-    echo AAAAAAAAAAAA
-    
-    echo $PWD
-    
     mkdir $APPVEYOR_BUILD_FOLDER/VigasocoSDL/input
     
     mkdir $APPVEYOR_BUILD_FOLDER/VigasocoSDL/video
@@ -58,7 +56,7 @@ build_script:
 - cmd: >-
     set PATH=C:\MinGW\bin\;%PATH%
 
-    C:\MinGW\bin\mingw32-make -f Makefile.MinGW
+    %BUILD_CMD%
 
     cp c:\MinGW\bin\libgcc_s_dw2-1.dll VigasocoSDL
 
@@ -68,7 +66,7 @@ build_script:
 
     7z a -tzip %ARTIFACT_FILE% VigasocoSDL\VigasocoSDL.exe VigasocoSDL\roms VigasocoSDL\input VigasocoSDL\video VigasocoSDL\audio VigasocoSDL\libgcc_s_dw2-1.dll VigasocoSDL\libstdc++-6.dll VigasocoSDL\SDL.dll
 - sh: >-
-    make
+    $BUILD_CMD
     
     zip $ARTIFACT_FILE VigasocoSDL/VigasocoSDL VigasocoSDL/audio/libVigasocoNULLAudioPlugin.so VigasocoSDL/audio/libVigasocoSDLAudioPlugin.so VigasocoSDL/video/libVigasocoSDLDrawPlugin.so VigasocoSDL/input/libVigasocoSDLInputPlugin.so VigasocoSDL/roms/abadia/*
     
