@@ -33,7 +33,7 @@ install:
     
     mkdir %APPVEYOR_BUILD_FOLDER%\build\win
 - sh: >-
-    export ARTIFACT_FILE="build/linux/VigasocoSDL-Beta.Linux.zip"
+    # export ARTIFACT_FILE="build/linux/VigasocoSDL-Beta.Linux.zip"
     
     sudo apt-get update
     
