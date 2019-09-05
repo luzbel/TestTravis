@@ -1,23 +1,19 @@
-version: 1.0.{build}.TEST-EMSCRIPTEN
+version: 1.0.{build}
 environment:
   matrix:
-# Mientras pruebo Emscripten, desactivo los otros builds
-#    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-#      BUILD_CMD: "C:\\MinGW\\bin\\mingw32-make -f Makefile.MinGW"
-#      ARTIFACT_FILE: "build\\win\\VigasocoSDL-Beta.Win32.$(APPVEYOR_REPO_TAG_NAME).zip"
-#    - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu
-#      BUILD_CMD: make -f Makefile
-#      ARTIFACT_FILE: "build/linux/VigasocoSDL-Beta.Linux.$(APPVEYOR_REPO_TAG_NAME).zip"
-#    - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu
-#      BUILD_CMD: make -f Makefile.static
-#      ARTIFACT_FILE: "build/linux/VigasocoSDL-Beta.Linux.static.$(APPVEYOR_REPO_TAG_NAME).zip"
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+      BUILD_CMD: "C:\\MinGW\\bin\\mingw32-make -f Makefile.MinGW"
+      ARTIFACT_FILE: "build\\win\\VigasocoSDL-Beta.Win32.$(APPVEYOR_REPO_TAG_NAME).zip"
     - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu
-      BUILD_CMD: emmake -f Makefile.emscripten
+      BUILD_CMD: make -f Makefile
+      ARTIFACT_FILE: "build/linux/VigasocoSDL-Beta.Linux.$(APPVEYOR_REPO_TAG_NAME).zip"
+    - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu
+      BUILD_CMD: make -f Makefile.static
       ARTIFACT_FILE: "build/linux/VigasocoSDL-Beta.Linux.static.$(APPVEYOR_REPO_TAG_NAME).zip"
 branches:
   # whitelist
   only:
-    - xbr
+    - appveyor
 install:
 - cmd: >-
     
@@ -43,32 +39,15 @@ install:
     
     sudo apt-get install -y libsdl1.2-dev
     
-    # estos directorios ahora los crea el Makefile    
-    #    mkdir $APPVEYOR_BUILD_FOLDER/VigasocoSDL/input
+    mkdir $APPVEYOR_BUILD_FOLDER/VigasocoSDL/input
     
-    #    mkdir $APPVEYOR_BUILD_FOLDER/VigasocoSDL/video
+    mkdir $APPVEYOR_BUILD_FOLDER/VigasocoSDL/video
     
-    #    mkdir $APPVEYOR_BUILD_FOLDER/VigasocoSDL/audio
-    
-    # Esto debería crearlo el Makefile 
+    mkdir $APPVEYOR_BUILD_FOLDER/VigasocoSDL/audio
     
     mkdir $APPVEYOR_BUILD_FOLDER/build
     
     mkdir $APPVEYOR_BUILD_FOLDER/build/linux
-    
-    # Emscripten
-    
-    git clone https://github.com/emscripten-core/emsdk.git
-    
-    cd emsdk
-    
-    ./emsdk install latest
-    
-    ./emsdk activate latest
-    
-    source ./emsdk_env.sh
-    
-    cd $APPVEYOR_BUILD_FOLDER
 build_script:
 - cmd: >-
     set PATH=C:\MinGW\bin\;%PATH%
