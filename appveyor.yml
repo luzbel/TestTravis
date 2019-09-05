@@ -57,12 +57,16 @@ install:
 
 # Emscripten
     git clone https://github.com/emscripten-core/emsdk.git
+    
     cd emsdk
+    
     ./emsdk install latest
+    
     ./emsdk activate latest
+    
     source ./emsdk_env.sh
+    
     cd $APPVEYOR_BUILD_FOLDER
-	
 build_script:
 - cmd: >-
     set PATH=C:\MinGW\bin\;%PATH%
