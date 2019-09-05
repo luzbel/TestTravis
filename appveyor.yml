@@ -42,19 +42,20 @@ install:
     sudo apt-get update
     
     sudo apt-get install -y libsdl1.2-dev
-
-# estos directorios ahora los crea el Makefile    
-#    mkdir $APPVEYOR_BUILD_FOLDER/VigasocoSDL/input
     
-#    mkdir $APPVEYOR_BUILD_FOLDER/VigasocoSDL/video
+    # estos directorios ahora los crea el Makefile    
+    #    mkdir $APPVEYOR_BUILD_FOLDER/VigasocoSDL/input
     
-#    mkdir $APPVEYOR_BUILD_FOLDER/VigasocoSDL/audio
-   
-# Esto debería crearlo el Makefile 
+    #    mkdir $APPVEYOR_BUILD_FOLDER/VigasocoSDL/video
+    
+    #    mkdir $APPVEYOR_BUILD_FOLDER/VigasocoSDL/audio
+    
+    # Esto debería crearlo el Makefile 
+    
     mkdir $APPVEYOR_BUILD_FOLDER/build
     
     mkdir $APPVEYOR_BUILD_FOLDER/build/linux
-
+    
 # Emscripten
     git clone https://github.com/emscripten-core/emsdk.git
     
