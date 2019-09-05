@@ -1,15 +1,6 @@
 version: 1.0.{build}
 environment:
   matrix:
-    #- APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-    #  BUILD_CMD: "C:\\MinGW\\bin\\mingw32-make -f Makefile.MinGW"
-    #  ARTIFACT_FILE: "build\\win\\VigasocoSDL-Beta.Win32.$(APPVEYOR_REPO_TAG_NAME).zip"
-    #- APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu
-    #  BUILD_CMD: make -f Makefile
-    #  ARTIFACT_FILE: "build/linux/VigasocoSDL-Beta.Linux.$(APPVEYOR_REPO_TAG_NAME).zip"
-    #- APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu
-    #  BUILD_CMD: make -f Makefile.static
-    #  ARTIFACT_FILE: "build/linux/VigasocoSDL-Beta.Linux.static.$(APPVEYOR_REPO_TAG_NAME).zip"
     - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu
       BUILD_CMD: make -f Makefile.emscripten
       ARTIFACT_FILE: "build/linux/VigasocoSDL-Beta.Linux.emscripten.$(APPVEYOR_REPO_TAG_NAME).zip"
