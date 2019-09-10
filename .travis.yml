@@ -1,0 +1,12 @@
+language: cpp
+branches:
+  only:
+  - xbr
+matrix:
+  include:
+  - os: linux
+    env: ARTIFACT_FILE="VigasocoSDL-Beta.Travis.Emscripten.zip" MAKE_OPTS=""
+    before_install:
+    - docker run -dit --name emscripten -v $(pwd):/src trzeci/emscripten:sdk-incoming-64bit bash
+script:
+  - docker exec -it emscripten emmake make -f Makefile.static.emscripten
