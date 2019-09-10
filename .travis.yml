@@ -10,6 +10,7 @@ matrix:
     - docker run -dit --name emscripten -v $(pwd):/src trzeci/emscripten:sdk-incoming-64bit bash
 script:
   - docker exec -it emscripten emmake make -f Makefile.static.emscripten
+  - cd VigasocoSDL
   - mkdir deploy
   - cp VigasocoSDL.data deploy
   - cp VigasocoSDL.html deploy
