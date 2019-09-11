@@ -13,7 +13,7 @@
 class DEFAULT
 {
 	public:
-		static const Uint32 flags=0;
+		static const Uint32 flags; //=0;
 		static const int scale=2;
 //		static const int bpp;
 };

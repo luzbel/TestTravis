@@ -99,12 +99,12 @@ class SDLDrawPluginFullScreen: public T
 };
 
 typedef SDLDrawPluginFullScreen<SDLDrawPlugin8bpp> SDLDrawPluginFullScreen8bpp;
-typedef SDLDrawPluginFullScreen<SDLBasicDrawPlugin<UINT16>> SDLDrawPluginFullScreen16bpp;
+typedef SDLDrawPluginFullScreen<SDLBasicDrawPlugin<UINT16> > SDLDrawPluginFullScreen16bpp;
 typedef SDLDrawPluginFullScreen<SDLDrawPlugin24bpp> SDLDrawPluginFullScreen24bpp;
-typedef SDLDrawPluginFullScreen<SDLBasicDrawPlugin<UINT32>> SDLDrawPluginFullScreen32bpp;
+typedef SDLDrawPluginFullScreen<SDLBasicDrawPlugin<UINT32> > SDLDrawPluginFullScreen32bpp;
 typedef SDLDrawPluginFullScreen<SDLDrawPluginPaletaGrises8bpp> SDLDrawPluginFullScreenPaletaGrises8bpp;
-typedef SDLDrawPluginFullScreen<SDLBasicDrawPluginGrayScale<UINT16>> SDLDrawPluginFullScreenPaletaGrises16bpp;
-typedef SDLDrawPluginFullScreen<SDLBasicDrawPluginGrayScale<UINT32>> SDLDrawPluginFullScreenPaletaGrises24bpp;
-typedef SDLDrawPluginFullScreen<SDLBasicDrawPluginGrayScale<UINT32>> SDLDrawPluginFullScreenPaletaGrises32bpp; 
+typedef SDLDrawPluginFullScreen<SDLBasicDrawPluginGrayScale<UINT16> > SDLDrawPluginFullScreenPaletaGrises16bpp;
+typedef SDLDrawPluginFullScreen<SDLBasicDrawPluginGrayScale<UINT32> > SDLDrawPluginFullScreenPaletaGrises24bpp;
+typedef SDLDrawPluginFullScreen<SDLBasicDrawPluginGrayScale<UINT32> > SDLDrawPluginFullScreenPaletaGrises32bpp; 
 
 #endif // _SDL_VIDEO_PLUGINS_H_
