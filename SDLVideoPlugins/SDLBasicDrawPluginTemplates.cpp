@@ -5,6 +5,10 @@
 #include "SDLBasicDrawPlugin.h"
 #include "IPalette.h"
 
+#ifdef __EMSCRIPTEN__
+#include "emscripten.h"
+#endif
+
 // 6 para cuadricula de 64*64 pixeles (2^6)
 // 7 para cuadricula de 128*128 pixeles (2^7)
 #define FACTOR_REJILLA 6
@@ -39,6 +43,12 @@ bool SDLBasicDrawPlugin<T>::init(const VideoInfo *vi, IPalette *pal)
 		screen->format->Rmask,screen->format->Gmask,screen->format->Bmask,screen->format->Amask,
 		screen->pitch,
 		SDL_GetError());
+
+/* No funciona, en el JS generado sigue habiendo una inicializacion con copyOnLock a true  
+#ifdef __EMSCRIPTEN__
+  EM_ASM("SDL.defaults.copyOnLock = false; SDL.defaults.discardOnLock = true; SDL.defaults.opaqueFrontBuffer = false;");
+#endif
+*/
 
 	_originalPalette=pal;
 
@@ -163,7 +173,25 @@ inline void SDLBasicDrawPlugin<T>::updateRect(int x,int y)
 template<typename T>
 void SDLBasicDrawPlugin<T>::render(bool throttle)
 {
-SDL_Flip(screen); return; //666
+#ifdef __EMSCRIPTEN__
+	if ( SDL_MUSTLOCK(screen) ) {
+		SDL_UnlockSurface(screen);
+	} 
+#endif
+
+	SDL_Flip(screen); return; //666
+
+#ifdef __EMSCRIPTEN__
+	if ( SDL_MUSTLOCK(screen) ) {
+		if ( SDL_LockSurface(screen) < 0 ) {
+			return;
+		}
+	}
+#endif
+
+
+// TODO: Código muerto, limpiar
+
 #ifdef _EE
 	SDL_UpdateRects(screen,0,NULL);
 #else
@@ -199,6 +227,7 @@ SDL_Flip(screen); return; //666
 template<typename T>
 void SDLBasicDrawPlugin<T>::setPixel(int x, int y, int color)
 {
+#ifndef __EMSCRIPTEN__
 	/* Lock the screen for direct access to the pixels */
 	if ( SDL_MUSTLOCK(screen) ) {
 		if ( SDL_LockSurface(screen) < 0 ) {
@@ -206,6 +235,7 @@ void SDLBasicDrawPlugin<T>::setPixel(int x, int y, int color)
 			return;
 		}
 	}
+#endif
 
 	updateRect(x,y);
 
@@ -234,7 +264,9 @@ p = (Uint8 *)screen->pixels + ((y * 2 * screen->pitch)+screen->pitch) + (x * __b
 
 //	*(T *)p = _palette[color]; // Vale para todos los bpp, excepto 24bpp
 
+#ifndef __EMSCRIPTEN__
 	if ( SDL_MUSTLOCK(screen) ) {
 		SDL_UnlockSurface(screen);
 	}
+#endif
 };

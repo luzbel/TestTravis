@@ -19,7 +19,7 @@ video-plugins-dir := VigasocoSDL/video
 
 all: | $(input-plugins-dir) $(audio-plugins-dir) $(video-plugins-dir)
 	cd SDLInputKeyboardPlugin && emmake make -f Makefile.static.emscripten
-	cd SDLVideoPlugins.DOUBLE-BUFFER && emmake make -f Makefile.static.emscripten
+	cd SDLVideoPlugins && emmake make -f Makefile.static.emscripten
 #	cd SDLAudioPlugin && emmake make -f Makefile.static.emscripten
 	cd NULLAudioPlugin && emmake make -f Makefile.static.emscripten
 	cd VigasocoSDL && emmake make -f Makefile.static.emscripten
@@ -35,7 +35,7 @@ $(video-plugins-dir):
 
 clean:
 	cd SDLInputKeyboardPlugin && emmake make -f Makefile.static.emscripten clean
-	cd SDLVideoPlugins.DOUBLE-BUFFER && emmake make -f Makefile.static.emscripten clean
+	cd SDLVideoPlugins && emmake make -f Makefile.static.emscripten clean
 #	cd SDLAudioPlugin && emmake make -f Makefile.static.emscripten clean
 	cd NULLAudioPlugin && emmake make -f Makefile.static.emscripten clean
 	cd VigasocoSDL && emmake make -f Makefile.static.emscripten clean

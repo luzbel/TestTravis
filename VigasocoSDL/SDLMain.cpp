@@ -30,13 +30,13 @@ typedef std::vector<std::string> Strings;
 // default options
 std::string g_game("abadia");
 std::string g_drawPluginsDLL("libVigasocoSDLDrawPlugin.so");
-#ifdef __EMSCRIPTEN__
-std::string g_drawPlugin("win8");
-#else
+//#ifdef __EMSCRIPTEN__
+//std::string g_drawPlugin("win8");
+//#else
 //std::string g_drawPlugin("win32");
 std::string g_drawPlugin("xbr4x");
 //std::string g_drawPlugin("hq4x");
-#endif
+//#endif
 
 // Se añade plugin NULLAudio sin salida de sonido
 // para poder compilar en Windows Services for Linux que no tiene soporte ALSA
