@@ -1,6 +1,6 @@
 #CXXFLAGS=-g -D__VIGASOCO_SDL_STATIC__ -O3 -I../core -I../VigasocoSDL/ `sdl-config --cflags`
-CXXFLAGS=-D__VIGASOCO_SDL_STATIC__ -O3 -I../core -I../VigasocoSDL/ `sdl-config --cflags` -s USE_PTHREADS=1 -s PTHREAD_POOL_SIZE=4 -s PROXY_TO_PTHREAD=1
-VPATH=.:../core:../core/abadia:../core/util:../core/systems
+CXXFLAGS=-D__VIGASOCO_SDL_STATIC__ -O3 -I../core -I../VigasocoSDL/ -Ilibxbr-standalone `sdl-config --cflags` -s USE_PTHREADS=1 -s PTHREAD_POOL_SIZE=4 -s PROXY_TO_PTHREAD=1
+VPATH=.:../core:../core/abadia:../core/util:../core/systems:libxbr-standalone
 
 OBJECTS = SDLDrawPlugin.o SDLVideoPlugins.o SDLDrawPlugin8bpp.o SDLDrawPlugin24bpp.o SDLDrawPluginPaletaGrises8bpp.o PluginMain.o
 
