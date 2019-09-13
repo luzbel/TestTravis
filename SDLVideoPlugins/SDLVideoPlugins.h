@@ -14,7 +14,7 @@ class SDLDrawPlugin8bpp : public SDLBasicDrawPlugin<UINT8>
 	private:
 		SDL_mutex *cs; // No se puede actualizar la paleta y el render a la vez
 	public:
-		SDLDrawPlugin8bpp() { cs=SDL_CreateMutex(); } 
+		SDLDrawPlugin8bpp() { cs=SDL_CreateMutex(); _flags|=SDL_HWPALETTE; } 
 		virtual ~SDLDrawPlugin8bpp() { SDL_DestroyMutex(cs); }
 		virtual void render(bool throttle);
 		virtual void setPixel(int x, int y, int color);
@@ -67,12 +67,14 @@ class SDLDrawPluginXBR: public SDLDrawPluginPixelScaler
 {
 	public:
 		virtual bool init(const VideoInfo *vi, IPalette *pal);
+		virtual void setProperty(std::string prop, int data);
 };
 
 class SDLDrawPluginHQX: public SDLDrawPluginPixelScaler
 {
 	public:
 		virtual bool init(const VideoInfo *vi, IPalette *pal);
+		virtual void setProperty(std::string prop, int data);
 };
 
 class SDLDrawPluginPaletaGrises8bpp : public SDLBasicDrawPlugin<UINT8>

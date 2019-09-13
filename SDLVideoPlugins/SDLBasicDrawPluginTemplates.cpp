@@ -9,6 +9,8 @@
 #include "emscripten.h"
 #endif
 
+// para debug con fprintf
+
 // 6 para cuadricula de 64*64 pixeles (2^6)
 // 7 para cuadricula de 128*128 pixeles (2^7)
 #define FACTOR_REJILLA 6
@@ -179,7 +181,7 @@ void SDLBasicDrawPlugin<T>::render(bool throttle)
 	} 
 #endif
 
-	SDL_Flip(screen); return; //666
+	SDL_Flip(screen); // return; //666
 
 #ifdef __EMSCRIPTEN__
 	if ( SDL_MUSTLOCK(screen) ) {
@@ -188,6 +190,7 @@ void SDLBasicDrawPlugin<T>::render(bool throttle)
 		}
 	}
 #endif
+return; // 666
 
 
 // TODO: Código muerto, limpiar
@@ -241,10 +244,12 @@ void SDLBasicDrawPlugin<T>::setPixel(int x, int y, int color)
 
 	int __bpp = screen->format->BytesPerPixel;
 	/* Here p is the address to the pixel we want to set */
-	//Uint8 *p = (Uint8 *)screen->pixels + y * screen->pitch + x * __bpp;
+//	Uint8 *p = (Uint8 *)screen->pixels + y * screen->pitch + x * __bpp;
 Uint8 *p = (Uint8 *)screen->pixels + (y * 2 * screen->pitch) + x * 2 * __bpp;
-*(T *)p = _palette[color]; // Vale para todos los bpp, excepto 24bpp
+*(T *)p = _palette[color]; // Vale para todos los bpp, excepto 24bpp 
+
 //*(T *)p = _palette[12]; // Vale para todos los bpp, excepto 24bpp
+
 p = (Uint8 *)screen->pixels + (y * 2 * screen->pitch) + (x * __bpp *2) + __bpp;
 *(T *)p = _palette[color]; // Vale para todos los bpp, excepto 24bpp
 p = (Uint8 *)screen->pixels + ((y * 2 * screen->pitch)+screen->pitch) + (x * __bpp *2) ;

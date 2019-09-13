@@ -2350,7 +2350,7 @@ void Juego::muestraPresentacion()
 	//VGA
 	UINT8 *romsVGA = &roms[0x24000-1-0x4000];
 	cpc6128->showVGAScreen(romsVGA + 0x1ADF0);
-
+while(true) //666 mientras pruebo xbr en emscripten para dejar la imagen fija
 	// espera 5 segundos
 	timer->sleep(5000);
 }

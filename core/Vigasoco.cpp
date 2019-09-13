@@ -411,6 +411,6 @@ void Vigasoco::showFPS(bool skipThisFrame)
 		//no descomentar ya que da core al devolver NULL
 		//muchos metodos no implementados
 		//usar mejor un simple printf
-		//fprintf(stderr,"FPS: %s\n",buf); 
+		fprintf(stderr,"FPS: %s\n",buf); 
 	}
 }

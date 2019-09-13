@@ -28,9 +28,17 @@ bool SDLBasicDrawPlugin<T>::init(const VideoInfo *vi, IPalette *pal)
 				vi->width,vi->height,_bpp,SDL_GetError());
 		return false;
 	}
-	printf("set %dx%dx%d BytesPerPixel %d video mode(%s): %s\n",
-				vi->width,vi->height,_bpp, screen->format->BytesPerPixel,
-				screen->flags & SDL_DOUBLEBUF?"DOUBLEBUFF":"No double buffer",SDL_GetError());
+//	printf("set %dx%dx%d BytesPerPixel %d video mode(%s): %s\n",
+//				vi->width,vi->height,_bpp, screen->format->BytesPerPixel,
+//				screen->flags & SDL_DOUBLEBUF?"DOUBLEBUFF":"No double buffer",SDL_GetError());
+	printf("set %dx%dx%d video mode(%s) format(%X-%X-%X-%X) pitch(%d); ERROR: %s\n",
+		screen->w,
+		screen->h,
+		screen->format->BitsPerPixel,
+		screen->flags & SDL_DOUBLEBUF?"DOUBLEBUFF":"No double buffer",
+		screen->format->Rmask,screen->format->Gmask,screen->format->Bmask,screen->format->Amask,
+		screen->pitch,
+		SDL_GetError());
 
 /* No funciona, en el JS generado sigue habiendo una inicializacion con copyOnLock a true  
 #ifdef __EMSCRIPTEN__

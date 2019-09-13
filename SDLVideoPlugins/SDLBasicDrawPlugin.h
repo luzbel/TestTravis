@@ -14,7 +14,7 @@ class DEFAULT
 {
 	public:
 		static const Uint32 flags; //=0;
-		static const int scale=2;
+		static const int scale=1; //2
 //		static const int bpp;
 };
 
@@ -34,7 +34,7 @@ class SDLBasicDrawPlugin : public SDLDrawPlugin
 
 		bool _isInitialized;
 		UINT32 _flags;
-		int _scale=2;
+		int _scale=1; // 2;
 		int _bpp;
 		T *_palette;
 	private:
