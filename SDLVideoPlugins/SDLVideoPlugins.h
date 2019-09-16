@@ -8,6 +8,7 @@
 #include "SDL.h"
 #include "filters.h"
 
+//#include <thread>  // 666 TMP para depurar
 
 class SDLDrawPlugin8bpp : public SDLBasicDrawPlugin<UINT8>
 {
@@ -55,9 +56,10 @@ class SDLDrawPluginPixelScaler: public SDLBasicDrawPlugin<UINT32>
 		// TODO: Seguro que hay formas más elegantes en C++
 		// que usar un puntero a una función
 		void (*xbr_filter_function)(const xbr_params *);
+		bool resize;
+		int scaleFactor=4;
 	private:
 		uint8_t *inBuffer, *outBuffer;
-		int scaleFactor=4;
 		xbr_data *xbrData;
 		xbr_params xbrParams;
 };

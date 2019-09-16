@@ -5,6 +5,7 @@
 #include <string>
 
 #include "../systems/cpc6128.h"
+#include "../IDrawPlugin.h"
 #include "../IAudioPlugin.h"
 #include "../InputHandler.h"
 #include "../IPalette.h"
@@ -91,6 +92,7 @@ Juego::Juego(UINT8 *romData, CPC6128 *cpc)
 {
 	idioma=0; // 0 español
 	mute=false; 
+	scale=2;
 	slot=0;
 	GraficosCPC=false;
 	// apunta a los datos del juego, pero saltándose la de la presentación
@@ -1063,6 +1065,99 @@ bool Juego::menuTutorial()
 	return false;
 }
 
+void Juego::pintaMenuGraficos(int seleccionado,bool efecto)
+{
+	static const char * textos[8][8] = 
+	{ 
+		{ // 0 Castellano 123456
+			"0 GRÁFICOS VGA-CPC" ,
+			"1 ESCALADO 2X-4X" ,
+			"2 VOLVER AL MENU ANTERIOR",
+			"",
+			""
+		},
+		{ // 1 INGLES
+			"0 GRAPHICS VGA-CPC" ,
+			"1 SCALE 2X-4X" , 
+			"2 VOLVER AL MENU ANTERIOR",
+			"",
+			""
+		},
+		{ // 2 PORTUGUES BRASIL
+			"0 GRAPHICS VGA-CPC" ,
+			"1 SCALE 2X-4X" , 
+			"2 VOLVER AL MENU ANTERIOR",
+			"",
+			""
+		},
+		{ // 3 CATALAN
+			"0 GRÁFICOS VGA-CPC" ,
+			"1 ESCALADO 2X-4X" ,
+			"2 VOLVER AL MENU ANTERIOR",
+			"",
+			""
+		},
+		{ // 4 GALLEGO
+			"0 GRÁFICOS VGA-CPC" ,
+			"1 ESCALADO 2X-4X" ,
+			"2 VOLVER AL MENU ANTERIOR",
+			"",
+			""
+		},
+		{ // 5 ITALIANO
+			"0 GRAPHICS VGA-CPC" ,
+			"1 SCALE 2X-4X" , 
+			"2 VOLVER AL MENU ANTERIOR",
+			"",
+			""
+		},
+		{ // 6 FINES
+			"0 GRAPHICS VGA-CPC" ,
+			"1 SCALE 2X-4X" , 
+			"2 VOLVER AL MENU ANTERIOR",
+			"",
+			""
+		},
+		{ // 7 PORTUGUES
+			"0 GRAPHICS VGA-CPC" ,
+			"1 SCALE 2X-4X" , 
+			"2 VOLVER AL MENU ANTERIOR",
+			"",
+			""
+		}
+	};
+	// limpia el área que ocupa el marcador
+	limpiaAreaJuego(0); 
+
+	// repintar con un efecto para que vaya apareciendo el
+	// menu de izquierda a derecha y asi dar tiempo a soltar las teclas
+	// al usuario
+
+	// repinta todo el menu
+	for(int x=efecto?8:88;x<88;x+=10)
+	{
+		cpc6128->fillMode1Rect(8, 0, x-1, 160, 0);
+		for (int i=0;i<3;i++)
+		{
+			marcador->imprimeFrase(textos[idioma][i], x, 
+				32+(i*16),4, 0);
+		}
+		timer->sleep(50);
+	}
+	cpc6128->fillMode1Rect(8, 0, 88, 160, 0);
+	for (int i=0;i<3;i++)
+	{
+		marcador->imprimeFrase(textos[idioma][i], 88, 32+(i*16),4, 0);
+	}
+
+	// pinta la opción seleccionado con el color de fondo y el color
+	// de letra cambiado 
+	marcador->imprimeFrase(textos[idioma][seleccionado], 88, 
+		32+(seleccionado*16), 0, 4);
+	
+}
+
+
 void Juego::pintaMenuAyuda(int seleccionado,bool efecto)
 {
 	static const char * textos[8][8] = 
@@ -1177,6 +1272,63 @@ void Juego::pintaMenuAyuda(int seleccionado,bool efecto)
 	marcador->imprimeFrase(textos[idioma][seleccionado], 88, 
 		32+(seleccionado*16), 0, 4);
 	
+}
+
+bool Juego::menuGraficos()
+{
+	int seleccionado=0;
+	int pulsado=-1;
+
+	limpiaAreaJuego(0);
+
+	pintaMenuGraficos(seleccionado,true);
+	{
+		bool salir=false;
+		while(salir==false) {	
+			pulsado=-1;
+			timer->sleep(100);
+			losControles->actualizaEstado();
+
+			if (losControles->estaSiendoPulsado(P1_DOWN)) {
+				seleccionado++;
+				if (seleccionado==3) seleccionado=0;
+				pintaMenuGraficos(seleccionado);
+			}
+			if (losControles->estaSiendoPulsado(P1_UP)) {
+				seleccionado--;
+				if (seleccionado==-1) seleccionado=2;
+				pintaMenuGraficos(seleccionado);
+			}
+			if (losControles->estaSiendoPulsado(P1_BUTTON1) ||
+			    losControles->estaSiendoPulsado(KEYBOARD_INTRO) ) {
+				pulsado=seleccionado;
+			}
+			
+			if (losControles->estaSiendoPulsado(KEYBOARD_0) ||
+				pulsado==0 )
+			{
+				cambioCPC_VGA();
+				pintaMenuGraficos(seleccionado);
+			} 
+			if (losControles->estaSiendoPulsado(KEYBOARD_1) ||
+				pulsado==1 )
+			{
+				//scale==2?scale=4:scale=2;
+				scale==4?scale=2:scale++; // 2x , 3x y 4x
+				//scale==4?scale=2:scale=4; //solo 2x y 4x
+				draw_plugin->setProperty("Scale",scale);
+				pintaMenuGraficos(seleccionado);
+			}
+			if (losControles->estaSiendoPulsado(KEYBOARD_2) ||
+				pulsado==2 )
+			{
+				salir=true;
+			}
+		}
+	
+	}
+
+	return false;
 }
 
 bool Juego::menuAyuda()
@@ -1483,7 +1635,7 @@ bool Juego::menuIdioma()
 
 void Juego::pintaMenuPrincipal(int seleccionado,bool efecto)
 {
-	static const char * textos[8][9] = 
+	static const char * textos[8][10] = 
 	{ 
 		{ // 0 Castellano
 			"0 IDIOMA",
@@ -1576,6 +1728,7 @@ void Juego::pintaMenuPrincipal(int seleccionado,bool efecto)
 	};
 	// limpia el área que ocupa el marcador
 	limpiaAreaJuego(0); 
+
 	// repinta todo el menu
 	for(int x=efecto?8:88;x<88;x+=10)
 	{
@@ -1587,6 +1740,7 @@ void Juego::pintaMenuPrincipal(int seleccionado,bool efecto)
 		}
 		timer->sleep(50);
 	}
+
 	cpc6128->fillMode1Rect(8, 0, 88, 160, 0);
 	for (int i=0;i<9;i++)
 	{
@@ -1649,7 +1803,8 @@ bool Juego::menu()
 			if (losControles->estaSiendoPulsado(KEYBOARD_3) ||
 				pulsado==3 )
 			{
-				cambioCPC_VGA();
+//				cambioCPC_VGA();
+				menuGraficos();
 				pintaMenuPrincipal(seleccionado,true);
 			} else
 			//if (losControles->estaSiendoPulsado(KEYBOARD_4))
@@ -1686,8 +1841,15 @@ bool Juego::menu()
 				mute=!mute;
 				audio_plugin->setProperty("mute",mute);
 			}
+			if (losControles->estaSiendoPulsado(KEYBOARD_7) ||
+				pulsado==7 )
+			{
+				scale==2?scale=4:scale=2;
+				//VigasocoMain->getDrawPlugin()->setProperty("Scale",scale);
+				draw_plugin->setProperty("Scale",scale);
+			}
 			if (losControles->estaSiendoPulsado(KEYBOARD_8) ||
-				pulsado==8 )
+				pulsado==9 )
 			{
 				salir=true;
 			} 
@@ -1708,10 +1870,11 @@ void Juego::run()
 	timer = VigasocoMain->getTimingHandler();
 	controles->init(VigasocoMain->getInputHandler());
 	audio_plugin = VigasocoMain->getAudioPlugin();
+	draw_plugin = VigasocoMain->getDrawPlugin();
 
 	// muestra la imagen de presentación
-
-	muestraPresentacion();
+//666 TODO  pruebas
+//	muestraPresentacion();
 
 	// para borrar la presentacion antes del menu
 	marcador->limpiaAreaMarcador();
@@ -1728,7 +1891,7 @@ void Juego::run()
 //	menu();
 
 	// muestra el pergamino de presentación
-//	muestraIntroduccion();
+	muestraIntroduccion();
 
 	// crea las entidades del juego (sprites, personajes, puertas y objetos)
 	creaEntidadesJuego();
@@ -2350,7 +2513,7 @@ void Juego::muestraPresentacion()
 	//VGA
 	UINT8 *romsVGA = &roms[0x24000-1-0x4000];
 	cpc6128->showVGAScreen(romsVGA + 0x1ADF0);
-while(true) //666 mientras pruebo xbr en emscripten para dejar la imagen fija
+//while(true) //666 mientras pruebo xbr en emscripten para dejar la imagen fija
 	// espera 5 segundos
 	timer->sleep(5000);
 }

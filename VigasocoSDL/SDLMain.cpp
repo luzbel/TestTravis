@@ -31,9 +31,9 @@ typedef std::vector<std::string> Strings;
 std::string g_game("abadia");
 std::string g_drawPluginsDLL("libVigasocoSDLDrawPlugin.so");
 #ifdef __EMSCRIPTEN__
-std::string g_drawPlugin("win8"); 
+//std::string g_drawPlugin("win8"); 
 //std::string g_drawPlugin("win32");
-//std::string g_drawPlugin("xbr4x");
+std::string g_drawPlugin("xbr4x");
 //std::string g_drawPlugin("hq4x");
 #else
 //std::string g_drawPlugin("win32");

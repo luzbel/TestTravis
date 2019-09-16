@@ -12,6 +12,7 @@
 #include "../Types.h"
 
 class CPC6128;					// definido en CPC6128.h
+class IDrawPlugin;
 class IAudioPlugin;				// definido en IAudioPlugin.h
 class TimingHandler;			// definido en TimingHandler.h
 
@@ -50,6 +51,7 @@ public:
 // campos
 private:
 	bool mute;
+	int scale;
 	unsigned short slot;
 public:
 	int idioma;  // idioma de los textos TODO ponerlo como un enumerado
@@ -63,6 +65,7 @@ public:
 			  // o del GraficosVGA
 			  // En ambos casos, son de 8 bits
 	CPC6128 *cpc6128;						// objeto de ayuda para realizar operaciones gráficas del cpc6128
+	IDrawPlugin *draw_plugin;
 	IAudioPlugin *audio_plugin;	// puntero al plugin de audio
 	Controles *controles;					// acceso a los controles del juego
 	Paleta *paleta;							// paleta del juego
@@ -109,6 +112,8 @@ private:
 	bool menuTutorial(void);
 	void pintaMenuAyuda(int seleccionado,bool efecto=false);
 	bool menuAyuda(void);
+	void pintaMenuGraficos(int seleccionado,bool efecto=false);
+	bool menuGraficos(void);
 	void pintaMenuIdioma(int seleccionado,bool efecto=false);
 	bool menuIdioma(void);
 	void pintaMenuPrincipal(int seleccionado,bool efecto=false);

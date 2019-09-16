@@ -1,8 +1,9 @@
+CFLAGS=-O3 -fPIC -I../core -I../VigasocoSDL/ -Ilibxbr-standalone `sdl-config --cflags`
 CXXFLAGS=-O3 -fPIC -I../core -I../VigasocoSDL/ -Ilibxbr-standalone `sdl-config --cflags`
 #CXXFLAGS=-g -fPIC -I../core -I../VigasocoSDL/ `sdl-config --cflags`
 VPATH=.:../core:../core/abadia:../core/util:../core/systems:libxbr-standalone
 
-OBJECTS = xbr.o hq4x.o SDLDrawPluginPixelScaler.o SDLDrawPlugin.o SDLVideoPlugins.o SDLDrawPlugin8bpp.o SDLDrawPlugin24bpp.o SDLDrawPluginPaletaGrises8bpp.o PluginMain.o
+OBJECTS = xbr.o hq2x.o hq3x.o hq4x.o SDLDrawPluginPixelScaler.o SDLDrawPlugin.o SDLVideoPlugins.o SDLDrawPlugin8bpp.o SDLDrawPlugin24bpp.o SDLDrawPluginPaletaGrises8bpp.o PluginMain.o
 
 ../VigasocoSDL/video/libVigasocoSDLDrawPlugin.so: $(OBJECTS) 
 	$(CXX) -fPIC -shared $(OBJECTS) -o $@
